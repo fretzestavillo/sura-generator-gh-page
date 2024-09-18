@@ -67,26 +67,22 @@ npm run dev
  npm run deploy
 ```
 
-```
-
-Now go to your github and click the settings
+## Hosting website
 
 ```
-
-![alt text](image-1.png)
-
+Go to your github and click the settings
 ```
 
+![alt text](assets/3.png)
+
+```
 Then click the check box and save
-
 ```
 
-![alt text](image-2.png)
+![alt text](assets/1.png)
 
 ```
-
 You can now click the link to view the website hosted by github
-
 ```
 
-![alt text](image-4.png)
+![alt text](assets/2.png)
