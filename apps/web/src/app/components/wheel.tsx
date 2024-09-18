@@ -48,6 +48,7 @@ export function SpinWheel(props: SpinWheelProps) {
     if (!props.prizeNumber) {
       const randomPrizeNumber = generateRandomPrizeNumber(props.options);
       setPrizeNumber(randomPrizeNumber);
+
       return;
     }
 

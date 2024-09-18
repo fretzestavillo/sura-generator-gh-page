@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import type { WheelDataType } from 'react-custom-roulette';
 import ReactConfetti from 'react-confetti';
-import { useWindowSize } from 'react-use';
+import { useSearchParam, useWindowSize } from 'react-use';
 import { Howl, Howler } from 'howler';
 
 import { SpinWheel } from './components';
@@ -22,10 +22,32 @@ import spinWheelSound from '../assets/audio/spin-wheel-sound.mp3';
 const API_URL =
   'https://script.google.com/macros/s/AKfycbye-vQ7rkXjBPc5I8yhQo9HQcwBnBDtIC9Wch6mortUj78RwINFQbdY2dJkQAiH9aoIkA/exec';
 
+const API_URL1 =
+  'https://script.google.com/macros/s/AKfycbwary9H0iZnSQYSOR9UFxYM70sa1RrqB9kOO2c5NtLvH86O1p-qv7XjsNKGAzBvP7GVyA/exec';
+
 type Sura = {
   id: number;
   name: string;
 };
+
+type SuraObj = {
+  id: string;
+  sura: string | undefined;
+};
+
+function doSubmit(suraAndId: SuraObj) {
+  fetch(API_URL1, {
+    mode: 'no-cors',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(suraAndId),
+  });
+
+  console.log(suraAndId);
+}
 
 function RandomText(props: { options: string[]; interval: number }) {
   const [newName, setNewName] = useState('');
@@ -52,6 +74,8 @@ function RandomText(props: { options: string[]; interval: number }) {
 }
 
 export default function App() {
+  const id = useSearchParam('id') || '';
+
   const { width, height } = useWindowSize();
   const [suraList, setSuraList] = useState<WheelDataType[]>();
   const [mustStartSpinning, setMustStartSpinning] = useState(false);
@@ -213,6 +237,15 @@ export default function App() {
                   )}
                   onStopSpinning={(number) => {
                     setSelectedSura(number);
+
+                    const suraAndId: SuraObj = {
+                      id,
+                      sura: suraList[number].option || '',
+                    };
+
+                    console.log(suraAndId.sura);
+                    doSubmit(suraAndId);
+
                     setMustStartSpinning(false);
                     sound.stop();
                     sound.loop(false);
@@ -237,6 +270,7 @@ export default function App() {
                   )
                 )}
               </Stack>
+
               <Button
                 disabled={!suraList || suraList.length < 1}
                 fullWidth
