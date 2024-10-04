@@ -35,6 +35,9 @@ npm install
 6. apps/web/webpack.config.js
 
 ```
+publicPath: process.env['NODE_ENV'] === 'production'
+        ? '/<replace with your  repository name>/'
+        : '/',
 process.env['NODE_ENV'] === 'production'? '/<replace with your  repository name>/'
 ```
 
