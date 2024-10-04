@@ -5,6 +5,10 @@ const { join } = require('path');
 module.exports = {
   output: {
     path: join(__dirname, '../../dist/apps/web'),
+    publicPath:
+      process.env['NODE_ENV'] === 'production'
+        ? '/sura-generator-gh-page/'
+        : '/',
   },
   devServer: {
     port: 4200,

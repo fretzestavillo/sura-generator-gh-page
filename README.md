@@ -15,7 +15,7 @@ git clone https://github.com/fretzestavillo/sura-generator-gh-page.git
 2. Change Directory:
 
 ```bash
-cd sura-generator-gh-page.git/
+cd sura-generator-gh-page/
 ```
 
 3. Remove the existing git:
