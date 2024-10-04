@@ -4,3 +4,6 @@
 node_modules
 
 !dist/apps/web/
+
+
+apps/backend

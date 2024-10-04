@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "nx serve web",
         "build": "nx build web",
-        "commit:gh-pages": "git add . && git commit -m 'rebuild gh pages'",
+        "commit:gh-pages": "git commit add && git commit -m 'rebuild gh pages'",
         "deploy:gh-pages": "git subtree push --prefix dist/apps/web origin gh-pages",
         "deploy": "npm run build && npm run commit:gh-pages && npm run deploy:gh-pages"
     },
